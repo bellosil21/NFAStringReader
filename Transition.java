@@ -7,7 +7,7 @@ public class Transition{
         input = in;
     }
 
-    public boolean check(String dest, String in){
+    public boolean check(String in){
         if (in.equals(input)){
             return true;
         }
