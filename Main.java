@@ -27,7 +27,9 @@ public class Main {
             for(int i = 0 ; i <= line1.length(); i++){
                 char c = line1.charAt(i);
                 if(c != '{' || c != ',' || c != '}'){
-                    //this means that this is is a Node
+                    //creates a new node based on the number 
+                    //TODO
+                    Node n = new Node(charAt.(i));
                 }
                 else if(c == '}'){
                     //this is the end of the line 
@@ -41,6 +43,8 @@ public class Main {
                 char c = line2.charAt(i);
                 if(c != '{' || c != ',' || c != '}'){
                     //this means that it is a character in the language 
+                    //ADDS THIS TO AN ARRAY IN NFA OR SOMETHING 
+                    //TODO
                 }
                 else if(c == '}'){
                     //this is the end of the line 
@@ -54,6 +58,8 @@ public class Main {
                 char c = line3.charAt(i);
                 if(c != '{' || c != ',' || c != '}'){
                     //this means that this is the start
+                    //SETS THE NODE TO BE START
+                    //TODO
                 }
                 else if(c == '}'){
                     //this is the end of the line 
@@ -67,6 +73,8 @@ public class Main {
                 char c = line4.charAt(i);
                 if(c != '{' || c != ',' || c != '}'){
                     //this means that this is an accepting state 
+                    //SETS NODE TO BE ACCEPTING
+                    //TODO
                 }
                 else if(c == '}'){
                     //this is the end of the line 
@@ -86,10 +94,12 @@ public class Main {
                         //there should be 2 Nodes per transition line
                         if(nodeCounter < 2){
                             //these are nodes 
+                            //TODO
                             nodeCounter++;
                         }
                         else{
                             //these are the letters that are needed for the transition 
+                            //TODO
                         }
                     }
                     else if(c == '}'){
@@ -103,7 +113,34 @@ public class Main {
             //TODO: handle exception
             System.out.print("Something went wrong fam.");
         }
+        
+        //closes the scanner for the file 
+        scr.close();
 
 
+        //creates a new scanner for the output 
+        Scanner scrString = new Scanner(System.in);
+        boolean end = false;
+        String result;
+        while(end != true){
+        
+        System.out.println("To end the program, type in 'end'");
+        System.out.println("Please type in a string to test");
+        
+        input = scrString.nextLine();
+        
+        if(input == "end"){
+            end = true; 
+        }
+        //TODO:
+        //METHOD THAT RUNS THE INPUT THROUGH THE NFA
+
+        //prints out the result 
+        System.out.println(result); 
+        }
+
+        //closes the scanner for the system 
+        scrString.close();
+        System.exit(0); //ends the program 
     }
 }
