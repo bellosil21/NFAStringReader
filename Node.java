@@ -1,15 +1,12 @@
 import java.util.ArrayList;
 
 public class Node { 
-    private String id;
+    private Character id;
     private ArrayList<Transition> transitions;
 
-    public Node(String id, Transition[] transArray){
+    public Node(char id){
         this.id = id;
         transitions = new ArrayList<Transition>();
-        for (int index = 0; index < transArray.length; index++){
-            transitions.add(transArray[index]);
-        }
     }
 
     public ArrayList<Transition> checkNodes(String input){
@@ -25,5 +22,9 @@ public class Node {
         return toReturn;
     }
 
-    public String getId(){return id;}
+    public char getId(){return id;}
+
+    public void addTransition(Transition newTransition){
+        transitions.add(newTransition);
+    }
 }
