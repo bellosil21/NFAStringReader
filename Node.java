@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Node { 
-    private Character id;
+    private char id;
     private ArrayList<Transition> transitions;
 
     public Node(char id){
@@ -9,13 +9,13 @@ public class Node {
         transitions = new ArrayList<Transition>();
     }
 
-    public ArrayList<Transition> checkNodes(String input){
+    public ArrayList<Transition> getNextNodes(char input){
         ArrayList<Transition> toReturn = new ArrayList<Transition>();
         Transition temp = null;
 
         for (int index = 0; index < transitions.size(); index++){
             temp = transitions.get(index);
-            if (temp.check(input)){
+            if (temp.checkTransition(input)){
                 toReturn.add(temp);
             }
         }

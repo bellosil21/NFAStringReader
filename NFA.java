@@ -10,6 +10,7 @@ public class NFA{
         nodes = new ArrayList<Node>();
         this.acceptingStates = acceptingStates;
         this.start = start;
+        System.out.println("Alphabet: " + alphabet);
         this.alphabet = alphabet.toCharArray();
     }
 
@@ -32,14 +33,38 @@ public class NFA{
      */
     public boolean checkAccepts(String input){
         char[] inputStringArray = input.toCharArray();
+        String alphabetString = new String(alphabet);
 
         // stack variable keeps track 
         ArrayList<Node> stack = new ArrayList<Node>();
         stack.add(start);
 
+        boolean allInAlphabet = true;
+        // System.out.println(alphabet.toString());
         for(int index = 0; index < inputStringArray.length; index++){
-            if (stack.size() < 1){
-                return false;
+            if(!(alphabetString.contains("" + inputStringArray[index]))){
+                allInAlphabet = false;
+                break;
+            }
+        }
+
+        if (!allInAlphabet){return false;}
+
+        for (int index = 0; index < inputStringArray.length; index++){
+            ArrayList<Node> stackCopy = new ArrayList<Node>(stack);
+            System.out.println("=========================== \n Stack: ");
+            for (Node node : stackCopy) {
+                System.out.println(node.getId() + ", ");
+            }
+            
+            stack.clear();
+            for (Node node : stackCopy) {
+                System.out.println("Current : " + inputStringArray[index]);
+                ArrayList<Transition> toAdd = node.getNextNodes(inputStringArray[index]);
+                for (Transition transition : toAdd) {
+                    System.out.println("Adding Node: " + transition.getDestination().getId());
+                    stack.add(transition.getDestination());
+                }
             }
         }
 
