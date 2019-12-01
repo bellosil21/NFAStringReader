@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.*;
 
+import jdk.internal.org.jline.reader.EndOfFileException;
+
 /**
  * main.java
  * 
@@ -10,14 +12,13 @@ import java.util.*;
  * 
  */
 public class Main {
-    String END_CASE = "end";
-
     public static void main(String[] args) {
+        String END = "end";
 
         // the parser portion that creates the NFA
-        File file = new File("C:\\Users\\Paul P T Bellosillo\\Documents\\GitHub\\NFAStringReader\\Test Cases\\Test_Case_1.txt");
+        File file = new File("C:\\Users\\Paul P T Bellosillo\\Documents\\GitHub\\NFAStringReader\\Test Cases\\Test_Case_3.txt");
 
-        // PUT THE CONSTRUCTOR FOR THE NFA HERE
+        // Initializes scanner and NFA objects
         Scanner scr = null;
         NFA nfa = null;
 
@@ -26,13 +27,15 @@ public class Main {
             scr = new Scanner(file);
 
         } catch (FileNotFoundException fnfe){
-            System.out.print("File not here or made fam.");
+            System.out.print("File is not found.");
+            System.exit(0);
         } 
         catch (Exception e) {
-            // TODO: handle exception
-            System.out.print("Something went wrong fam.");
+            System.out.print("Something wrong happened.");
+            System.exit(0);
         }
 
+        try{
            // the first line of the file should have all the names of the Nodes in the DFA
            String line1 = scr.nextLine();
            System.out.println("line1: " + line1);
@@ -102,9 +105,6 @@ public class Main {
                    break;
                }
            }
-
-           // REMEMBER TO MAKE ERROR CASES IF THERE ARE LESS THAN 5 LINES
-
            // the next line should be the transitions
            while (scr.hasNextLine()) {
                String line = scr.nextLine();
@@ -148,7 +148,9 @@ public class Main {
            nfa = new NFA(inputNodes, acceptingStates, start, alphabet);
            // closes the scanner for the file
            scr.close();
-
+        } catch (EOFException eof) {
+            System.out.println("File has reached end of File and is not in proper format.");
+        }
         // creates a new scanner for the output
         Scanner scrString = new Scanner(System.in);
         boolean end = false;
@@ -161,12 +163,11 @@ public class Main {
             input = scrString.nextLine();
             input = input.trim();
 
-            if (input.equalsIgnoreCase("end")) {
+            if (input.equalsIgnoreCase(END)) {
                 end = true;
             }
 
-            // TODO:
-            // METHOD THAT RUNS THE INPUT THROUGH THE NFA
+            // Runs input through given NFA and checks for it accepts or rejects 
             if (nfa.checkAccepts(input)){
                 result = "accepts";
             }

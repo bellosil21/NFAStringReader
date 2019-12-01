@@ -1,4 +1,13 @@
+/** Transistion.java
+ * 
+ * Class that defines a Transition from a node to the next
+ * 
+ * Authors: Dylan Pascua and Paul Patrick Bellosillo
+ * Date: December 2, 2019
+ * 
+ */
 public class Transition{
+    // Instance variables for 
     private Node destination;
     private char input;
 
