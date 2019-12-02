@@ -167,8 +167,10 @@ public class Main {
             input = scrString.nextLine();
             input = input.trim();
 
+            // Exits if user want to end program
             if (input.equalsIgnoreCase(END)) {
                 end = true;
+                break;
             }
 
             // Runs input through given NFA and checks for it accepts or rejects
