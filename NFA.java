@@ -32,7 +32,6 @@ public class NFA {
         nodes = new ArrayList<Node>();
         this.acceptingStates = acceptingStates;
         this.start = start;
-        System.out.println("Alphabet: " + alphabet);
         this.alphabet = alphabet.toCharArray();
     }
 
@@ -83,6 +82,8 @@ public class NFA {
         // Runs through input to check if all characters are valid for this NFA
         boolean allInAlphabet = true;
         for (int index = 0; index < inputStringArray.length; index++) {
+            // returns false and breaks from loop if one of the input
+            // is not in the alphabet
             if (!(alphabetString.contains("" + inputStringArray[index]))) {
                 allInAlphabet = false;
                 break;
@@ -100,7 +101,8 @@ public class NFA {
             for (Node node : stackCopy) {
                 ArrayList<Transition> toAdd = node.getNextNodes(EMPTY);
                 for (Transition transition : toAdd) {
-                    System.out.println("Adding Node: " + transition.getDestination().getId());
+                    System.out.println("Transitioning from " + node.getId() + " to " + 
+                        transition.getDestination().getId() + " with char " + EMPTY);
                     stack.add(transition.getDestination());
                 }
             }
@@ -110,7 +112,7 @@ public class NFA {
         for (int index = 0; index < inputStringArray.length; index++) {
             ArrayList<Node> stackCopy = new ArrayList<Node>(stack);
             for (Node node : stackCopy) {
-                System.out.println(node.getId() + ", ");
+                System.out.print(node.getId() + ", ");
             }
 
             // Checks and looks through the stack and retrieves all nodes in which
@@ -118,21 +120,24 @@ public class NFA {
             // next node is triggered by current char
             stack.clear();
             for (Node node : stackCopy) {
-                System.out.println("Current : " + inputStringArray[index]);
                 ArrayList<Transition> toAdd = node.getNextNodes(inputStringArray[index]);
                 for (Transition transition : toAdd) {
-                    System.out.println("Adding Node: " + transition.getDestination().getId());
+                    System.out.println("Transitioning from " + node.getId() + " to " + 
+                        transition.getDestination().getId() + " with char " + inputStringArray[index]);
                     stack.add(transition.getDestination());
                 }
             }
 
-            // Adds nodes for when next transition is triggered by epsilon (a.k.a: e)
+            // Adds nodes for when next transition is triggered by epsilon (a.k.a '~') after
+            // char trigger
             stackCopy.clear();
             stackCopy = new ArrayList<Node>(stack);
             for (Node node : stackCopy) {
                 ArrayList<Transition> toAdd = node.getNextNodes(EMPTY);
+                System.out.println("Current Node: " + node.getId());
                 for (Transition transition : toAdd) {
-                    System.out.println("Adding Node: " + transition.getDestination().getId());
+                    System.out.println("Transitioning from " + node.getId() + " to " + 
+                        transition.getDestination().getId() + " with char " + EMPTY);
                     stack.add(transition.getDestination());
                 }
             }
