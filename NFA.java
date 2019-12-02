@@ -5,7 +5,8 @@ import java.util.ArrayList;
  * 
  * Class to create and defines a NFA graph
  * 
- * Authors: Dylan Pascua and Paul Patrick Bellosillo Date: December 2, 2019
+ * Authors: Dylan Pascua and Paul Patrick Bellosillo 
+ * Date: December 2, 2019
  * 
  */
 

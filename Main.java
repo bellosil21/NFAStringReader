@@ -6,7 +6,8 @@ import java.util.*;
  * 
  * Main Class for calling and creating a
  * 
- * Authors: Dylan Pascua and Paul Patrick Bellosillo Date: December 2, 2019
+ * Authors: Dylan Pascua and Paul Patrick Bellosillo 
+ * Date: December 2, 2019
  * 
  */
 public class Main {
