@@ -14,13 +14,13 @@ public class Main {
         String END = "end";
 
         // the parser portion that creates the NFA
-        File file = new File(".\\Test Cases\\Test_Case_3.txt");
+        File file = new File(".\\Test Cases\\" + args[0]);
 
         // Initializes scanner and NFA objects
         Scanner scr = null;
         NFA nfa = null;
 
-        // scans the file for data
+        // Attempts to open file selected by user
         try {
             scr = new Scanner(file);
 
@@ -161,9 +161,9 @@ public class Main {
         String input, result;
         while (end != true) {
 
+            // Informs user and saves inputs
             System.out.println("To end the program, type in 'end'");
             System.out.println("Please type in a string to test");
-
             input = scrString.nextLine();
             input = input.trim();
 
